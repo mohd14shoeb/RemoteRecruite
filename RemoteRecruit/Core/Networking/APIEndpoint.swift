@@ -12,13 +12,11 @@ import Foundation
 enum APIEndpoint {
     // MARK: - Jobs Endpoints
     case jobs
-    case jobDetail(id: String)
-    case searchJobs(query: String)
 
     // MARK: - HTTP Method
     var method: HTTPMethod {
         switch self {
-        case .jobs, .jobDetail, .searchJobs:
+        case .jobs:
             return .GET
         }
     }
@@ -27,19 +25,14 @@ enum APIEndpoint {
     var path: String {
         switch self {
         case .jobs:
-            return "jobs/"
-        case .jobDetail(let id):
-            return "/jobs/\(id)"
-        case .searchJobs:
-            return "/jobs/search"
+            return "jobs"
         }
     }
 
     // MARK: - Query Parameters
     var queryItems: [URLQueryItem]? {
         switch self {
-        case .searchJobs(let query):
-            return [URLQueryItem(name: "q", value: query)]
+
         default:
             return nil
         }

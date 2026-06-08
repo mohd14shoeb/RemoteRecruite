@@ -22,7 +22,7 @@ enum APIEnvironment: String, CaseIterable {
     var baseURL: String {
         switch self {
         case .development:
-            return "https://jobdataapi.com/api/"
+            return "https://aidevboard.com/api/v1/"
         case .staging:
             return "https://staging.api.remoterecruit.com/v1"
         case .production:

@@ -1,18 +1,7 @@
-/* 
-Copyright (c) 2026 Swift Models Generated from JSON powered by http://www.json4swift.com
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar
-
-*/
 
 import Foundation
-struct Jobs : Codable {
+
+struct Jobs : Identifiable, Codable, Equatable {
 	let id : String?
 	let company_id : String?
 	let title : String?
@@ -96,5 +85,76 @@ struct Jobs : Codable {
 		quality_score = try values.decodeIfPresent(Int.self, forKey: .quality_score)
 		url = try values.decodeIfPresent(String.self, forKey: .url)
 	}
+    
+    var titleJob : String {
+        return self.title ?? ""
+    }
+    var company : String {
+        return self.company_name ?? ""
+    }
+    var company_location : String {
+        return self.location ?? ""
+    }
+    var salaryRange : Int {
+        return self.salary_max ?? 0
+    }
+    var descriptionJob : String {
+        return self.description ?? ""
+    }
+    
+}
 
+// MARK: - Test Convenience Initializer
+extension Jobs {
+    init(id: String?,
+         company_id: String?,
+         title: String?,
+         slug: String?,
+         description: String?,
+         salary_min: Int?,
+         salary_max: Int?,
+         location: String?,
+         workplace: String?,
+         job_type: String?,
+         experience_level: String?,
+         tags: [String]?,
+         apply_url: String?,
+         is_featured: Bool?,
+         is_sticky: Bool?,
+         status: String?,
+         published_at: String?,
+         expires_at: String?,
+         created_at: String?,
+         updated_at: String?,
+         company_name: String?,
+         company_slug: String?,
+         company_logo_url: String?,
+         quality_score: Int?,
+         url: String?) {
+        self.id = id
+        self.company_id = company_id
+        self.title = title
+        self.slug = slug
+        self.description = description
+        self.salary_min = salary_min
+        self.salary_max = salary_max
+        self.location = location
+        self.workplace = workplace
+        self.job_type = job_type
+        self.experience_level = experience_level
+        self.tags = tags
+        self.apply_url = apply_url
+        self.is_featured = is_featured
+        self.is_sticky = is_sticky
+        self.status = status
+        self.published_at = published_at
+        self.expires_at = expires_at
+        self.created_at = created_at
+        self.updated_at = updated_at
+        self.company_name = company_name
+        self.company_slug = company_slug
+        self.company_logo_url = company_logo_url
+        self.quality_score = quality_score
+        self.url = url
+    }
 }
